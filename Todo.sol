@@ -34,15 +34,19 @@ contract Todo{
         //     is_completed:false
         // });
 
+        require(msg.sender == todoList[ind].owner ,"only has owner update the Todo");
+
          todoList[ind].title=title;
     }
 
     function deleteTodo(uint ind) public {
+        require(msg.sender == todoList[ind].owner ,"only has owner delete the todo");
         todoList[ind]=todoList[todoList.length - 1];
         todoList.pop();
     }
 
     function completeTodo(uint ind) public {
+        require(msg.sender == todoList[ind].owner ,"only has owner complete the todo");
         todoList[ind].is_completed=true;
     }
 }
